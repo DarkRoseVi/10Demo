@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище kersachViModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CookingStage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="DishId" Type="int" />
+    <Property Name="TimeintMinutes" Type="nvarchar" MaxLength="50" />
+    <Property Name="InventoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="CountryOrigin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DegreeSharpness">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Dish">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="DegreeSharpnessId" Type="int" />
+    <Property Name="Photo" Type="image" />
+    <Property Name="OrdelId" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="CountyOriginId" Type="int" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="OtdelId" Type="int" />
+  </EntityType>
+  <EntityType Name="Ingredient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Photo" Type="image" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UnitId" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="IngredientOfCookingSage">
+    <Key>
+      <PropertyRef Name="CookingSageid" />
+      <PropertyRef Name="IngredientId" />
+    </Key>
+    <Property Name="CookingSageid" Type="int" Nullable="false" />
+    <Property Name="IngredientId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="StatusInventoryId" Type="int" />
+    <Property Name="Photo" Type="image" />
+    <Property Name="ManufacturerId" Type="int" />
+  </EntityType>
+  <EntityType Name="Landing">
+    <Key>
+      <PropertyRef Name="ProviderId" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="IngredientId" />
+    </Key>
+    <Property Name="ProviderId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="IngredientId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Adres" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeesId" Type="int" />
+    <Property Name="ClientId" Type="int" />
+    <Property Name="Sum" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="StatysId" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderDish">
+    <Key>
+      <PropertyRef Name="OrserId" />
+      <PropertyRef Name="DishId" />
+    </Key>
+    <Property Name="OrserId" Type="int" Nullable="false" />
+    <Property Name="DishId" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Otdel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Oklad" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StatusInventory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Сlient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_CookingStage_Dish">
+    <End Role="Dish" Type="Self.Dish" Multiplicity="0..1" />
+    <End Role="CookingStage" Type="Self.CookingStage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dish">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CookingStage">
+        <PropertyRef Name="DishId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CookingStage_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+    <End Role="CookingStage" Type="Self.CookingStage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CookingStage">
+        <PropertyRef Name="InventoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dish">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_CountryOrigin">
+    <End Role="CountryOrigin" Type="Self.CountryOrigin" Multiplicity="0..1" />
+    <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryOrigin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dish">
+        <PropertyRef Name="CountyOriginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_DegreeSharpness">
+    <End Role="DegreeSharpness" Type="Self.DegreeSharpness" Multiplicity="0..1" />
+    <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DegreeSharpness">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dish">
+        <PropertyRef Name="DegreeSharpnessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dish_Otdel">
+    <End Role="Otdel" Type="Self.Otdel" Multiplicity="0..1" />
+    <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otdel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dish">
+        <PropertyRef Name="OrdelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Otdel1">
+    <End Role="Otdel" Type="Self.Otdel" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otdel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="OtdelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredient_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+    <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ingredient">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IngredientOfCookingSage_CookingStage">
+    <End Role="CookingStage" Type="Self.CookingStage" Multiplicity="1" />
+    <End Role="IngredientOfCookingSage" Type="Self.IngredientOfCookingSage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CookingStage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IngredientOfCookingSage">
+        <PropertyRef Name="CookingSageid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IngredientOfCookingSage_Ingredient">
+    <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+    <End Role="IngredientOfCookingSage" Type="Self.IngredientOfCookingSage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IngredientOfCookingSage">
+        <PropertyRef Name="IngredientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ManufacturerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_StatusInventory">
+    <End Role="StatusInventory" Type="Self.StatusInventory" Multiplicity="0..1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusInventory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="StatusInventoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Landing_Ingredient">
+    <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+    <End Role="Landing" Type="Self.Landing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Landing">
+        <PropertyRef Name="IngredientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Landing_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="Landing" Type="Self.Landing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Landing">
+        <PropertyRef Name="ProviderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="EmployeesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="StatysId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Сlient">
+    <End Role="Сlient" Type="Self.Сlient" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сlient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDish_Dish">
+    <End Role="Dish" Type="Self.Dish" Multiplicity="1" />
+    <End Role="OrderDish" Type="Self.OrderDish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dish">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDish">
+        <PropertyRef Name="DishId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDish_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDish" Type="Self.OrderDish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDish">
+        <PropertyRef Name="OrserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище kersachViModelContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CookingStage" EntityType="Self.CookingStage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CountryOrigin" EntityType="Self.CountryOrigin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DegreeSharpness" EntityType="Self.DegreeSharpness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dish" EntityType="Self.Dish" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ingredient" EntityType="Self.Ingredient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IngredientOfCookingSage" EntityType="Self.IngredientOfCookingSage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Landing" EntityType="Self.Landing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDish" EntityType="Self.OrderDish" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Otdel" EntityType="Self.Otdel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusInventory" EntityType="Self.StatusInventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Сlient" EntityType="Self.Сlient" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CookingStage_Dish" Association="Self.FK_CookingStage_Dish">
+      <End Role="Dish" EntitySet="Dish" />
+      <End Role="CookingStage" EntitySet="CookingStage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CookingStage_Inventory" Association="Self.FK_CookingStage_Inventory">
+      <End Role="Inventory" EntitySet="Inventory" />
+      <End Role="CookingStage" EntitySet="CookingStage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_Category" Association="Self.FK_Dish_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Dish" EntitySet="Dish" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_CountryOrigin" Association="Self.FK_Dish_CountryOrigin">
+      <End Role="CountryOrigin" EntitySet="CountryOrigin" />
+      <End Role="Dish" EntitySet="Dish" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_DegreeSharpness" Association="Self.FK_Dish_DegreeSharpness">
+      <End Role="DegreeSharpness" EntitySet="DegreeSharpness" />
+      <End Role="Dish" EntitySet="Dish" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dish_Otdel" Association="Self.FK_Dish_Otdel">
+      <End Role="Otdel" EntitySet="Otdel" />
+      <End Role="Dish" EntitySet="Dish" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Otdel1" Association="Self.FK_Employees_Otdel1">
+      <End Role="Otdel" EntitySet="Otdel" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_Role" Association="Self.FK_Employees_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredient_Unit" Association="Self.FK_Ingredient_Unit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="Ingredient" EntitySet="Ingredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IngredientOfCookingSage_CookingStage" Association="Self.FK_IngredientOfCookingSage_CookingStage">
+      <End Role="CookingStage" EntitySet="CookingStage" />
+      <End Role="IngredientOfCookingSage" EntitySet="IngredientOfCookingSage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IngredientOfCookingSage_Ingredient" Association="Self.FK_IngredientOfCookingSage_Ingredient">
+      <End Role="Ingredient" EntitySet="Ingredient" />
+      <End Role="IngredientOfCookingSage" EntitySet="IngredientOfCookingSage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Manufacturer" Association="Self.FK_Inventory_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturer" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_StatusInventory" Association="Self.FK_Inventory_StatusInventory">
+      <End Role="StatusInventory" EntitySet="StatusInventory" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Landing_Ingredient" Association="Self.FK_Landing_Ingredient">
+      <End Role="Ingredient" EntitySet="Ingredient" />
+      <End Role="Landing" EntitySet="Landing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Landing_Provider" Association="Self.FK_Landing_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Landing" EntitySet="Landing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Employees" Association="Self.FK_Order_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Сlient" Association="Self.FK_Order_Сlient">
+      <End Role="Сlient" EntitySet="Сlient" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDish_Dish" Association="Self.FK_OrderDish_Dish">
+      <End Role="Dish" EntitySet="Dish" />
+      <End Role="OrderDish" EntitySet="OrderDish" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDish_Order" Association="Self.FK_OrderDish_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDish" EntitySet="OrderDish" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
